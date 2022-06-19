@@ -1,0 +1,38 @@
+.deleteButton {
+  width: 55px;
+  height: 45px;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fe6637;
+  border-radius: 50%;
+  font-family: 'Montserrat', sans-serif;
+  color: #fe6637;
+  transition: 0.2s ease-in-out;
+}
+.deleteButton:before {
+  content: '';
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.5)
+  );
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+}
+.deleteButton:hover {
+  background: #fe6637;
+  color: #fff;
+}
+.deleteButton:hover:before {
+  left: 150px;
+  transition: 0.5s ease-in-out;
+}
