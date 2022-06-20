@@ -5,18 +5,30 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 import Navigation from './Navigation';
 import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import Registration from './Registration/Registration';
 import Login from './Login';
+import { fetchCurrentUser } from 'redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const App = () => {
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(state=>state.auth.isFetchingCurrentUser);
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
+    <>
+    {/* {isFetchingCurrentUser &&} */}
     <div className={s.phonebook}>
       <Navigation />
       <Suspense fallback={<h1>Loading...</h1>}>
         <Routes>
-          <Route
-            path="/"
+          <Route exact
+            path="/contacts" redirectTo="/login"
             element={
              <div>
                 <h1>Phonebook</h1>
@@ -27,12 +39,13 @@ const App = () => {
                 </div>
             }
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
+          <Route exact path="/login" redirectTo="/contacts" element={<Login />} restricted/>
+          <Route exact path="/register" element={<Registration />} restricted/>
         </Routes>
       </Suspense>
       {/* <UserMenu/> */}
     </div>
+    </>
   );
 };
 
