@@ -26,18 +26,21 @@ export const token = {
 };
 
 export const register = createAsyncThunk('auth/register', async credentials => {
+    console.log("register")
   const { data } = await axios.post('/users/signup', credentials);
   token.set(data.token);
   return data;
 });
 
 export const logIn = createAsyncThunk('auth/login', async credentials => {
+    console.log("logIn")
   const { data } = await axios.post('/users/login', credentials);
   token.set(data.token);
   return data;
 });
 
 export const logOut = createAsyncThunk('auth/logout', async () => {
+    console.log("logOut")
   await axios.post('/users/logout');
   token.unset();
 });

@@ -10,11 +10,17 @@ import Registration from './Registration/Registration';
 import Login from './Login';
 import { fetchCurrentUser } from 'redux/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-
+import UserMenu from './UserMenu';
+import AuthNavigation from './AuthNavigation';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
+import HomePage from './HomePage';
 
 const App = () => {
   const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(state=>state.auth.isFetchingCurrentUser);
+  const isFetchingCurrentUser = useSelector(
+    state => state.auth.isFetchingCurrentUser
+  );
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -22,29 +28,42 @@ const App = () => {
 
   return (
     <>
-    {/* {isFetchingCurrentUser &&} */}
-    <div className={s.phonebook}>
-      <Navigation />
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Routes>
-          <Route exact
-            path="/contacts" redirectTo="/login"
-            element={
-             <div>
-                <h1>Phonebook</h1>
-                <ContactForm />
-                <h2>Contacts</h2>
-                <Filter title="Find contacts by name" />
-                <ContactList />
+      {/* {isFetchingCurrentUser &&} */}
+      <header className={s.phonebook}>
+        <Navigation/>
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route
+              exact
+              path="/contacts"
+              // redirectTo="/login"
+              element={
+                <div>
+                  <h1>Phonebook</h1>
+                  <ContactForm />
+                  <h2>Contacts</h2>
+                  <Filter title="Find contacts by name" />
+                  <ContactList />
                 </div>
-            }
-          />
-          <Route exact path="/login" redirectTo="/contacts" element={<Login />} restricted/>
-          <Route exact path="/register" element={<Registration />} restricted/>
-        </Routes>
-      </Suspense>
-      {/* <UserMenu/> */}
-    </div>
+              }
+            />
+            <Route
+              exact
+              path="/login"
+              // redirectTo="/contacts"
+              element={<Login />}
+              restricted
+            />
+            <Route
+              exact
+              path="/register"
+              element={<Registration />}
+              restricted
+            />
+          </Routes>
+        </Suspense>
+      </header>
     </>
   );
 };

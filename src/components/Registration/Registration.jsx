@@ -66,7 +66,7 @@ const Registration = () => {
             value={name}
             onChange={handleChange}
             placeholder="JohnDoe"
-            label="name"
+            label="Name"
           />
           <TextField
             name="email"

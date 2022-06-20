@@ -1,41 +1,34 @@
-
 import { NavLink } from 'react-router-dom';
-// import { Link as RouterLink } from 'react-router-dom';
-// import JoyLink from '@mui/joy/Link';
+import { useSelector } from 'react-redux';
 import s from './navigation.module.css';
+import UserMenu from 'components/UserMenu';
+import AuthNavigation from 'components/AuthNavigation';
 
 const Navigation = () => {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
     <>
-    <nav className={s.sectionNav}>
-      <NavLink
-        to="/"
-        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
-      >
-        Main
-      </NavLink>
-      <NavLink
-        to="/contacts"
-        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
-      >
-        Contacts
-      </NavLink>
-      <NavLink
-        to="/register"
-        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
-      >
-        Register
-      </NavLink>
-      <NavLink
-        to="/login"
-        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
-      >
-        login
-      </NavLink>
-    </nav>
+      <nav className={s.sectionNav}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            !isActive ? `${s.link}` : `${s.actLink}`
+          }
+        >
+          Main
+        </NavLink>
+        <NavLink
+          to="/contacts"
+          className={({ isActive }) =>
+            !isActive ? `${s.link}` : `${s.actLink}`
+          }
+        >
+          Contacts
+        </NavLink>
+        {isLoggedIn ? <UserMenu /> : <AuthNavigation />}
+      </nav>
     </>
   );
 };
-
 
 export default Navigation;
