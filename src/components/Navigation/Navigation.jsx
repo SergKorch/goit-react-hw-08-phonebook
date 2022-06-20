@@ -1,37 +1,39 @@
 
 import { NavLink } from 'react-router-dom';
-import { Link as RouterLink } from 'react-router-dom';
-import JoyLink from '@mui/joy/Link';
-// import s from './navigation.module.css';
+// import { Link as RouterLink } from 'react-router-dom';
+// import JoyLink from '@mui/joy/Link';
+import s from './navigation.module.css';
 
 const Navigation = () => {
   return (
-    <nav >
-      <JoyLink
+    <>
+    <nav className={s.sectionNav}>
+      <NavLink
         to="/"
-        // className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
+        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
       >
         Main
-      </JoyLink>
-      <JoyLink
+      </NavLink>
+      <NavLink
         to="/register"
-        // className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
+        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
       >
         Register
-      </JoyLink>
-      <JoyLink
+      </NavLink>
+      <NavLink
         to="/login"
-        // className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
+        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
       >
         login
-      </JoyLink>
-      <JoyLink
+      </NavLink>
+      <NavLink
         to="/contacts"
-        // className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
+        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
       >
         Contacts
-      </JoyLink>
+      </NavLink>
     </nav>
+    </>
   );
 };
 
