@@ -19,7 +19,6 @@ const App = () => {
             path="/"
             element={
              <div>
-                <Navigation />
                 <h1>Phonebook</h1>
                 <ContactForm />
                 <h2>Contacts</h2>
@@ -28,9 +27,8 @@ const App = () => {
                 </div>
             }
           />
-          {/*     <Route path="/register" element={<MoviesPage />} />*/}
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Registration />} />
+          <Route path="/register" element={<Registration />} />
         </Routes>
       </Suspense>
       {/* <UserMenu/> */}

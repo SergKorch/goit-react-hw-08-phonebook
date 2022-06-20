@@ -52,7 +52,7 @@ const Registration = () => {
             Registration
           </Button>
           <Typography
-            endDecorator={<Link href="/login">Log in</Link>}
+            endDecorator={<Link href="/goit-react-hw-08-phonebook/login">Log in</Link>}
             fontSize="sm"
             sx={{ alignSelf: 'center' }}
           >

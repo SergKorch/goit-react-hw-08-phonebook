@@ -15,6 +15,12 @@ const Navigation = () => {
         Main
       </NavLink>
       <NavLink
+        to="/contacts"
+        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
+      >
+        Contacts
+      </NavLink>
+      <NavLink
         to="/register"
         className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
       >
@@ -25,12 +31,6 @@ const Navigation = () => {
         className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
       >
         login
-      </NavLink>
-      <NavLink
-        to="/contacts"
-        className={({ isActive }) => (!isActive ? `${s.link}` : `${s.actLink}`)}
-      >
-        Contacts
       </NavLink>
     </nav>
     </>
