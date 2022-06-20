@@ -37,8 +37,9 @@ const Registration = () => {
   return (
     <div>
       <CssVarsProvider>
-        <Sheet
-          onSubmit={handleSubmit}
+      <form
+        onSubmit={handleSubmit}>
+         <Sheet
           variant="outlined"
           sx={{
             maxWidth: 400,
@@ -52,7 +53,8 @@ const Registration = () => {
             borderRadius: 'sm',
             boxShadow: 'md',
           }}
-        >
+        > 
+
           <div>
             <Typography level="h4" component="h1">
               <b>Welcome!</b>
@@ -101,7 +103,9 @@ const Registration = () => {
           >
             If you have an account.
           </Typography>
+
         </Sheet>
+        </form>
       </CssVarsProvider>
     </div>
   );

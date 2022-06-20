@@ -6,12 +6,6 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isFetchingCurrentUser: false,
-  operations: {
-    register: null,
-    logOut: null,
-    logIn: null,
-    fetchCurrentUser: null,
-  },
 };
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
@@ -26,21 +20,23 @@ export const token = {
 };
 
 export const register = createAsyncThunk('auth/register', async credentials => {
-    console.log("register")
+  console.log('register');
+  console.log(credentials)
   const { data } = await axios.post('/users/signup', credentials);
   token.set(data.token);
   return data;
+
 });
 
 export const logIn = createAsyncThunk('auth/login', async credentials => {
-    console.log("logIn")
+  console.log('logIn');
   const { data } = await axios.post('/users/login', credentials);
   token.set(data.token);
   return data;
 });
 
 export const logOut = createAsyncThunk('auth/logout', async () => {
-    console.log("logOut")
+  console.log('logOut');
   await axios.post('/users/logout');
   token.unset();
 });
