@@ -66,7 +66,6 @@ const ContactForm = () => {
             }}
           >
             <TextField
-              nput
               type="text"
               name="name"
               value={name}
