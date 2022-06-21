@@ -10,7 +10,7 @@ import Button from '@mui/joy/Button';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const nameInpId = nanoid();
   const numbInpId = nanoid();
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const ContactForm = () => {
         break;
 
       case 'number':
-        setPhone(value);
+        setNumber(value);
         break;
 
       default:
@@ -40,13 +40,13 @@ const ContactForm = () => {
       Notiflix.Notify.failure(`${name} is already in contact`);
       return contacts;
     } else {
-      dispatch(addContact({ name, phone }));
+      dispatch(addContact({ name, number }));
     }
     reset();
   };
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -77,7 +77,7 @@ const ContactForm = () => {
             <TextField
               type="tel"
               name="number"
-              value={phone}
+              value={number}
               onChange={changeInp}
               id={numbInpId}
               placeholder="+38(000)-000-00-00"

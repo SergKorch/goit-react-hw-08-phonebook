@@ -30,12 +30,12 @@ const ContactList = () => {
       </div>}
       {visibleContacts().length > 0  && (
         <ul>
-          {visibleContacts().map(({ id, name, phone }) => (
+          {visibleContacts().map(({ id, name, number }) => (
             <ContactListItem
               key={id}
               id={id}
               nameContact={name}
-              number={phone}
+              number={number}
               deleteContact={id => {
                 dispatch(deleteContactByID(id));
                 dispatch(getContacts());

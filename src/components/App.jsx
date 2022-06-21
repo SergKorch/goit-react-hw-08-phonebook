@@ -18,9 +18,9 @@ import HomePage from './HomePage';
 
 const App = () => {
   const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(
-    state => state.auth.isFetchingCurrentUser
-  );
+  // const isFetchingCurrentUser = useSelector(
+  //   state => state.auth.isFetchingCurrentUser
+  // );
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
