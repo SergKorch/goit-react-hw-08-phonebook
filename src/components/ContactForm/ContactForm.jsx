@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import Notiflix from 'notiflix';
-import s from './ContactForm.module.css';
 import { addContact } from '../../redux/contactSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { CssVarsProvider } from '@mui/joy/styles';
+import Sheet from '@mui/joy/Sheet';
+import TextField from '@mui/joy/TextField';
+import Button from '@mui/joy/Button';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -48,39 +51,50 @@ const ContactForm = () => {
 
   return (
     <div>
-      <form onSubmit={submitInp} action="submit">
-        <label htmlFor={nameInpId}>
-          <p>Name</p>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={changeInp}
-            id={nameInpId}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            placeholder="Enter name here"
-          />
-        </label>
-        <label htmlFor={numbInpId}>
-          <p>Number</p>
-          <input
-            type="tel"
-            name="number"
-            value={phone}
-            onChange={changeInp}
-            id={numbInpId}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            placeholder="Enter number here"
-          />
-        </label>
-        <button className={s.submitButton} type="submit">
-          Add contact
-        </button>
-      </form>
+      <CssVarsProvider>
+        <form onSubmit={submitInp} action="submit">
+          <Sheet
+            sx={{
+              maxWidth: 400,
+              mx: 'auto', // margin left & right
+              my: 4, // margin top & botom
+              py: 3, // padding top & bottom
+              px: 2, // padding left & right
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+            }}
+          >
+            <TextField
+              nput
+              type="text"
+              name="name"
+              value={name}
+              onChange={changeInp}
+              id={nameInpId}
+              placeholder="John Doe"
+              label="Name"
+            />
+            <TextField
+              type="tel"
+              name="number"
+              value={phone}
+              onChange={changeInp}
+              id={numbInpId}
+              placeholder="+38(000)-000-00-00"
+              label="Phone number"
+            />
+            <Button
+              type="submit"
+              sx={{
+                mt: 1, // margin top
+              }}
+            >
+              Add contact
+            </Button>
+          </Sheet>
+        </form>
+      </CssVarsProvider>
     </div>
   );
 };

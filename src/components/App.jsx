@@ -30,37 +30,40 @@ const App = () => {
     <>
       {/* {isFetchingCurrentUser &&} */}
       <header className={s.phonebook}>
-        <Navigation/>
+        <Navigation />
         <Suspense fallback={<h1>Loading...</h1>}>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route
-              exact
               path="/contacts"
-              // redirectTo="/login"
               element={
-                <div>
-                  <h1>Phonebook</h1>
-                  <ContactForm />
-                  <h2>Contacts</h2>
-                  <Filter title="Find contacts by name" />
-                  <ContactList />
-                </div>
+                <PrivateRoute>
+                  <div>
+                    <h1>Phonebook</h1>
+                    <ContactForm />
+                    <Filter title="Find contacts by name" />
+                    <ContactList />
+                  </div>
+                </PrivateRoute>
               }
             />
             <Route
-              exact
               path="/login"
-              // redirectTo="/contacts"
-              element={<Login />}
-              restricted
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
             />
             <Route
-              exact
               path="/register"
-              element={<Registration />}
-              restricted
+              element={
+                <PublicRoute>
+                  <Registration />
+                </PublicRoute>
+              }
             />
+            <Route path="*" element={<></>} />
           </Routes>
         </Suspense>
       </header>

@@ -33,7 +33,6 @@ const Login = () => {
     <div>
       <CssVarsProvider>
         <Sheet
-          variant="outlined"
           onSubmit={handleSubmit}
           sx={{
             maxWidth: 400,
@@ -44,8 +43,6 @@ const Login = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            borderRadius: 'sm',
-            boxShadow: 'md',
           }}
         >
           <div>

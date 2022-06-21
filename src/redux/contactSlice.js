@@ -6,9 +6,7 @@ const initialState = { items: [], filter: '', loading: false };
 export const getContacts = createAsyncThunk(
   'contacts/getContacts',
   async (_, { rejectWithValue, dispatch }) => {
-    const res = await axios.get(
-      `https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts`
-    );
+    const res = await axios.get(`/contacts`);
     dispatch(setContacts(res.data));
   }
 );
@@ -16,7 +14,7 @@ export const getContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async ({ name, phone }, { rejectWithValue, dispatch }) => {
-    await axios.post(`https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts`, {
+    await axios.post(`/contacts`, {
       name,
       phone,
     });
@@ -26,10 +24,7 @@ export const addContact = createAsyncThunk(
 export const deleteContactByID = createAsyncThunk(
   'contacts/deleteContact',
   async (id, { rejectWithValue, dispatch }) => {
-    await axios.delete(
-      `https://62a74e8cbedc4ca6d7c6c8ec.mockapi.io/contacts/${id}`
-    );
-    // dispatch(deleteContactSet(id));
+    await axios.delete(`/contacts/${id}`);
     dispatch(getContacts());
   }
 );

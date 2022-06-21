@@ -19,9 +19,8 @@ export const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-// Notiflix.Notify.failure('Download contacts was rejected')
+
 export const register = createAsyncThunk('auth/register', async credentials => {
-  console.log('register');
   try {
     const { data } = await axios.post('/users/signup', credentials);
     token.set(data.token);
@@ -32,16 +31,22 @@ export const register = createAsyncThunk('auth/register', async credentials => {
 });
 
 export const logIn = createAsyncThunk('auth/login', async credentials => {
-  console.log('logIn');
-  const { data } = await axios.post('/users/login', credentials);
-  token.set(data.token);
-  return data;
+  try {
+    const { data } = await axios.post('/users/login', credentials);
+    token.set(data.token);
+    return data;
+  } catch (error) {
+    Notiflix.Notify.failure('Error login')
+  }
 });
 
 export const logOut = createAsyncThunk('auth/logout', async () => {
-  console.log('logOut');
-  await axios.post('/users/logout');
-  token.unset();
+  try {
+    await axios.post('/users/logout');
+    token.unset();
+  } catch (error) {
+    Notiflix.Notify.failure('Error logout')
+  }
 });
 
 export const fetchCurrentUser = createAsyncThunk(
@@ -53,8 +58,12 @@ export const fetchCurrentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);
-    const { data } = await axios.get('/users/current');
-    return data;
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      Notiflix.Notify.failure('Error refresh')
+    }
   }
 );
 
@@ -63,7 +72,6 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled](state, action) {
-      console.log(state)
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;

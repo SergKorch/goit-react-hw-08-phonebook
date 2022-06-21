@@ -11,7 +11,7 @@ ul {
 }
 .phonebook {
   display: block;
-  width: 400px;
+  max-width: 400px;
   border: 2px solid black;
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
   border-radius: 1%;
@@ -43,7 +43,7 @@ ul {
   color: black;
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
-.phonebook input {
+/* .phonebook input {
   display: block;
   margin: 10px auto;
   width: 300px;
@@ -52,15 +52,15 @@ ul {
   border: 1px solid #cecece;
   background: #f6f6f6;
   border-radius: 8px;
-}
+} */
 
 .phonebook li {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .phonebook ul {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }

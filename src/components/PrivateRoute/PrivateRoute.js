@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
-import { Route, Navigate } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ children, redirectTo = '/', ...routeProps }) => {
+const PrivateRoute = ({ children }) => {
+  let location = useLocation();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  return (
-    <Route {...routeProps}>
-      {isLoggedIn ? children : <Navigate to={redirectTo} />}
-    </Route>
-  );
+  if (!isLoggedIn) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return children;
 };
 export default PrivateRoute;

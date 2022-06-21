@@ -37,74 +37,70 @@ const Registration = () => {
   return (
     <div>
       <CssVarsProvider>
-      <form
-        onSubmit={handleSubmit}>
-         <Sheet
-          variant="outlined"
-          sx={{
-            maxWidth: 400,
-            mx: 'auto', // margin left & right
-            my: 4, // margin top & botom
-            py: 3, // padding top & bottom
-            px: 2, // padding left & right
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            borderRadius: 'sm',
-            boxShadow: 'md',
-          }}
-        > 
-
-          <div>
-            <Typography level="h4" component="h1">
-              <b>Welcome!</b>
-            </Typography>
-            <Typography level="body2">Log in to continue</Typography>
-          </div>
-
-          <TextField
-            name="name"
-            type="name"
-            value={name}
-            onChange={handleChange}
-            placeholder="JohnDoe"
-            label="Name"
-          />
-          <TextField
-            name="email"
-            type="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="johndoe@email.com"
-            label="Email"
-          />
-          <TextField
-            name="password"
-            type="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="password"
-            label="Password"
-          />
-          <Button
-            type="submit"
+        <form onSubmit={handleSubmit}>
+          <Sheet
             sx={{
-              mt: 1, // margin top
+              maxWidth: 400,
+              mx: 'auto', // margin left & right
+              my: 4, // margin top & botom
+              py: 3, // padding top & bottom
+              px: 2, // padding left & right
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
             }}
           >
-            Registration
-          </Button>
-          <Typography
-            endDecorator={
-              <Link href="/goit-react-hw-08-phonebook/login">Log in</Link>
-            }
-            fontSize="sm"
-            sx={{ alignSelf: 'center' }}
-          >
-            If you have an account.
-          </Typography>
+            <div>
+              <Typography level="h4" component="h1">
+                <b>Welcome!</b>
+              </Typography>
+              <Typography level="body2">Log in to continue</Typography>
+            </div>
 
-        </Sheet>
+            <TextField
+              name="name"
+              type="name"
+              value={name}
+              onChange={handleChange}
+              placeholder="JohnDoe"
+              label="Name"
+            />
+            <TextField
+              name="email"
+              type="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="johndoe@email.com"
+              label="Email"
+            />
+            <TextField
+              name="password"
+              type="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="password"
+              label="Password"
+            />
+            
+            <Button
+              type="submit"
+              sx={{
+                mt: 1, // margin top
+              }}
+            >
+              Registration
+            </Button>
+            <Typography
+              endDecorator={
+                <Link href="/goit-react-hw-08-phonebook/login">Log in</Link>
+              }
+              fontSize="sm"
+              sx={{ alignSelf: 'center' }}
+            >
+              If you have an account.
+            </Typography>
+          </Sheet>
+          
         </form>
       </CssVarsProvider>
     </div>
