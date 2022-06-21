@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import Notiflix from 'notiflix';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
@@ -8,7 +9,7 @@ const initialState = {
   isFetchingCurrentUser: false,
 };
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 export const token = {
   set(token) {
@@ -18,14 +19,16 @@ export const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
-
+// Notiflix.Notify.failure('Download contacts was rejected')
 export const register = createAsyncThunk('auth/register', async credentials => {
   console.log('register');
-  console.log(credentials)
-  const { data } = await axios.post('/users/signup', credentials);
-  token.set(data.token);
-  return data;
-
+  try {
+    const { data } = await axios.post('/users/signup', credentials);
+    token.set(data.token);
+    return data;
+  } catch (error) {
+    Notiflix.Notify.failure('Error registration')
+  }
 });
 
 export const logIn = createAsyncThunk('auth/login', async credentials => {
@@ -60,6 +63,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled](state, action) {
+      console.log(state)
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
