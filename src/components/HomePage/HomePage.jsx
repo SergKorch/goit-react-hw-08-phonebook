@@ -9,6 +9,7 @@ const HomePage = () => {
   return (
     <div>
       <h1>Phonebook</h1>
+      <h2>Please login or register.</h2>
       <div
         style={{
           display: 'flex',
@@ -19,7 +20,7 @@ const HomePage = () => {
         {!isLoggedIn ? (
           <CssVarsProvider>
             <Button variant="solid" component={RouterLink} to="/register">
-              Registrasion
+              Registration
             </Button>
             <Button variant="soft" component={RouterLink} to="/login">
               Log in
