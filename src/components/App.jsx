@@ -57,7 +57,7 @@ const App = () => {
                 </PublicRoute>
               }
             />
-            <Route path="*" element={<></>} />
+            <Route path="*" element={<HomePage />} />
           </Routes>
         </Suspense>
       </header>
