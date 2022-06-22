@@ -1,7 +1,7 @@
 import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import Link from '@mui/joy/Link';
+import { NavLink } from 'react-router-dom';
 import TextField from '@mui/joy/TextField';
 import Button from '@mui/joy/Button';
 import { useState } from 'react';
@@ -77,7 +77,7 @@ const Login = () => {
           </Button>
           <Typography
             endDecorator={
-              <Link href="/register">Sign up</Link>
+              <NavLink to="/register">Sign up</NavLink>
             }
             fontSize="sm"
             sx={{ alignSelf: 'center' }}

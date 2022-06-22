@@ -18,7 +18,7 @@ const Navigation = () => {
           Main
         </NavLink>
         <NavLink
-          to="/contacts"
+          to="contacts"
           className={({ isActive }) =>
             !isActive ? `${s.link}` : `${s.actLink}`
           }

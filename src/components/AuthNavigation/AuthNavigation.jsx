@@ -6,7 +6,7 @@ const AuthNavigation = () => {
     <>
       <nav className={s.sectionNav}>
         <NavLink
-          to="/register"
+          to="register"
           className={({ isActive }) =>
             !isActive ? `${s.link}` : `${s.actLink}`
           }
@@ -14,7 +14,7 @@ const AuthNavigation = () => {
           Register
         </NavLink>
         <NavLink
-          to="/login"
+          to="login"
           className={({ isActive }) =>
             !isActive ? `${s.link}` : `${s.actLink}`
           }

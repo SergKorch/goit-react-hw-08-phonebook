@@ -29,7 +29,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
-              path="/contacts"
+              path="contacts"
               element={
                 <PrivateRoute>
                   <div>
@@ -42,7 +42,7 @@ const App = () => {
               }
             />
             <Route
-              path="/login"
+              path="login"
               element={
                 <PublicRoute>
                   <Login />
@@ -50,7 +50,7 @@ const App = () => {
               }
             />
             <Route
-              path="/register"
+              path="register"
               element={
                 <PublicRoute>
                   <Registration />
