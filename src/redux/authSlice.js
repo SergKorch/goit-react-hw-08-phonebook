@@ -6,7 +6,6 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isFetchingCurrentUser: false,
 };
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -26,7 +25,7 @@ export const register = createAsyncThunk('auth/register', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    Notiflix.Notify.failure('Error registration')
+    Notiflix.Notify.failure('Registration error');
   }
 });
 
@@ -36,7 +35,7 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    Notiflix.Notify.failure('Error login')
+    Notiflix.Notify.failure('Authorisation error');
   }
 });
 
@@ -45,7 +44,7 @@ export const logOut = createAsyncThunk('auth/logout', async () => {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    Notiflix.Notify.failure('Error logout')
+    Notiflix.Notify.failure('Logout error');
   }
 });
 
@@ -62,7 +61,7 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      Notiflix.Notify.failure('Error refresh')
+      Notiflix.Notify.failure('Refresh error');
     }
   }
 );
@@ -86,16 +85,9 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
     },
-    [fetchCurrentUser.pending](state) {
-      state.isFetchingCurrentUser = true;
-    },
     [fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
-      state.isFetchingCurrentUser = false;
-    },
-    [fetchCurrentUser.rejected](state) {
-      state.isFetchingCurrentUser = false;
     },
   },
 });

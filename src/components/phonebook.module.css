@@ -43,24 +43,11 @@ ul {
   color: black;
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
-/* .phonebook input {
-  display: block;
-  margin: 10px auto;
-  width: 300px;
-  font-size: 13px;
-  padding: 6px 0 4px 10px;
-  border: 1px solid #cecece;
-  background: #f6f6f6;
-  border-radius: 8px;
-} */
 
 .phonebook li {
-  /* display: flex;
-  justify-content: space-between; */
+  display: flex;
+  justify-content: space-between;
   margin-left: 20px;
   margin-right: 20px;
 }
 
-.phonebook ul {
-  /* margin-bottom: 10px; */
-}

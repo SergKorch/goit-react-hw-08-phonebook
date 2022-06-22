@@ -15,6 +15,7 @@ const ContactForm = () => {
   const numbInpId = nanoid();
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.items);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const changeInp = event => {
     const { name, value } = event.currentTarget;
     switch (name) {
@@ -51,49 +52,51 @@ const ContactForm = () => {
 
   return (
     <div>
-      <CssVarsProvider>
-        <form onSubmit={submitInp} action="submit">
-          <Sheet
-            sx={{
-              maxWidth: 400,
-              mx: 'auto', // margin left & right
-              my: 4, // margin top & botom
-              py: 3, // padding top & bottom
-              px: 2, // padding left & right
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 2,
-            }}
-          >
-            <TextField
-              type="text"
-              name="name"
-              value={name}
-              onChange={changeInp}
-              id={nameInpId}
-              placeholder="John Doe"
-              label="Name"
-            />
-            <TextField
-              type="tel"
-              name="number"
-              value={number}
-              onChange={changeInp}
-              id={numbInpId}
-              placeholder="+38(000)-000-00-00"
-              label="Phone number"
-            />
-            <Button
-              type="submit"
+      {isLoggedIn && (
+        <CssVarsProvider>
+          <form onSubmit={submitInp} action="submit">
+            <Sheet
               sx={{
-                mt: 1, // margin top
+                maxWidth: 400,
+                mx: 'auto', // margin left & right
+                my: 4, // margin top & botom
+                py: 3, // padding top & bottom
+                px: 2, // padding left & right
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
               }}
             >
-              Add contact
-            </Button>
-          </Sheet>
-        </form>
-      </CssVarsProvider>
+              <TextField
+                type="text"
+                name="name"
+                value={name}
+                onChange={changeInp}
+                id={nameInpId}
+                placeholder="John Doe"
+                label="Name"
+              />
+              <TextField
+                type="tel"
+                name="number"
+                value={number}
+                onChange={changeInp}
+                id={numbInpId}
+                placeholder="+38(000)-000-00-00"
+                label="Phone number"
+              />
+              <Button
+                type="submit"
+                sx={{
+                  mt: 1, // margin top
+                }}
+              >
+                Add contact
+              </Button>
+            </Sheet>
+          </form>
+        </CssVarsProvider>
+      )}
     </div>
   );
 };

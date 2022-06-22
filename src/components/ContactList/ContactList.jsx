@@ -13,6 +13,7 @@ const ContactList = () => {
   const status = useSelector(state => state.contacts.loading);
   const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const visibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
     return contacts.filter(contact => {
@@ -21,14 +22,12 @@ const ContactList = () => {
   };
   return (
     <div>
-      {status && <div className={s.sweet_loading}>
-        <ScaleLoader
-          size={150}
-          color={'#123abc'}
-          speedMultiplier={1.5}
-        />
-      </div>}
-      {visibleContacts().length > 0  && (
+      {status && (
+        <div className={s.sweet_loading}>
+          <ScaleLoader size={150} color={'#123abc'} speedMultiplier={1.5} />
+        </div>
+      )}
+      {visibleContacts().length > 0 && isLoggedIn && (
         <ul>
           {visibleContacts().map(({ id, name, number }) => (
             <ContactListItem

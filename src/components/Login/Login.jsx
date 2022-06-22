@@ -6,7 +6,6 @@ import TextField from '@mui/joy/TextField';
 import Button from '@mui/joy/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import authSlice from 'redux/authSlice';
 import { logIn } from 'redux/authSlice';
 
 const Login = () => {

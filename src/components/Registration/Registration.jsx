@@ -81,7 +81,7 @@ const Registration = () => {
               placeholder="password"
               label="Password"
             />
-            
+
             <Button
               type="submit"
               sx={{
@@ -100,7 +100,6 @@ const Registration = () => {
               If you have an account.
             </Typography>
           </Sheet>
-          
         </form>
       </CssVarsProvider>
     </div>

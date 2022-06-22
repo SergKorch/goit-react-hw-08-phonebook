@@ -7,14 +7,13 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <HashRouter>
-        <App />
-      </HashRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <HashRouter>
+          <App />
+        </HashRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>
