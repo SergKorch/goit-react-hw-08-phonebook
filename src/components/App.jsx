@@ -1,6 +1,6 @@
 import s from './phonebook.module.css';
 import Navigation from './Navigation';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { fetchCurrentUser } from 'redux/authSlice';
 import { useDispatch } from 'react-redux';
@@ -57,7 +57,7 @@ const App = () => {
                 </PublicRoute>
               }
             />
-            <Route path="*" element={<HomePage />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Suspense>
       </header>
