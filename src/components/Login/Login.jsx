@@ -31,60 +31,59 @@ const Login = () => {
   return (
     <div>
       <CssVarsProvider>
-        <Sheet
-          onSubmit={handleSubmit}
-          sx={{
-            maxWidth: 400,
-            mx: 'auto', // margin left & right
-            my: 4, // margin top & botom
-            py: 3, // padding top & bottom
-            px: 2, // padding left & right
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-          }}
-        >
-          <div>
-            <Typography level="h4" component="h1">
-              <b>Welcome!</b>
-            </Typography>
-            <Typography level="body2">Sign in to continue</Typography>
-          </div>
-          <TextField
-            onChange={handleChange}
-            name="email"
-            type="email"
-            value={email}
-            placeholder="johndoe@email.com"
-            // pass down to FormLabel as children
-            label="Email"
-          />
-          <TextField
-            onChange={handleChange}
-            name="password"
-            type="password"
-            value={password}
-            placeholder="password"
-            label="Password"
-          />
-          <Button
-            type="submit"
+        <form onSubmit={handleSubmit}>
+          <Sheet
             sx={{
-              mt: 1, // margin top
+              maxWidth: 400,
+              mx: 'auto', // margin left & right
+              my: 4, // margin top & botom
+              py: 3, // padding top & bottom
+              px: 2, // padding left & right
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
             }}
           >
-            Log in
-          </Button>
-          <Typography
-            endDecorator={
-              <NavLink to="/register">Sign up</NavLink>
-            }
-            fontSize="sm"
-            sx={{ alignSelf: 'center' }}
-          >
-            Don't have an account?
-          </Typography>
-        </Sheet>
+            <div>
+              <Typography level="h4" component="h1">
+                <b>Welcome!</b>
+              </Typography>
+              <Typography level="body2">Sign in to continue</Typography>
+            </div>
+            <TextField
+              onChange={handleChange}
+              name="email"
+              type="email"
+              value={email}
+              placeholder="johndoe@email.com"
+              // pass down to FormLabel as children
+              label="Email"
+            />
+            <TextField
+              onChange={handleChange}
+              name="password"
+              type="password"
+              value={password}
+              placeholder="password"
+              label="Password"
+            />
+            <Button
+              type="submit"
+              sx={{
+                mt: 1, // margin top
+              }}
+            >
+              Log in
+            </Button>
+            <Typography
+              endDecorator={<NavLink to="/register">Sign up</NavLink>}
+              fontSize="sm"
+              sx={{ alignSelf: 'center' }}
+            >
+              Don't have an account?
+            </Typography>
+          </Sheet>
+        </form>
       </CssVarsProvider>
     </div>
   );
