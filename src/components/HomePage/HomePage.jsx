@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      {!isLoggedIn && <h2>Please login or register.</h2>}
+      {!isLoggedIn && <h2>Please log in or register.</h2>}
       <div
         style={{
           display: 'flex',
