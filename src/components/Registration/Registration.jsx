@@ -92,7 +92,7 @@ const Registration = () => {
             </Button>
             <Typography
               endDecorator={
-                <Link href="/goit-react-hw-08-phonebook/login">Log in</Link>
+                <Link href="/login">Log in</Link>
               }
               fontSize="sm"
               sx={{ alignSelf: 'center' }}
