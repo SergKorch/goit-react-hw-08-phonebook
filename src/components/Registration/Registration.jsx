@@ -5,14 +5,17 @@ import { NavLink } from 'react-router-dom';
 import TextField from '@mui/joy/TextField';
 import Button from '@mui/joy/Button';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from 'redux/authSlice';
+import { PulseLoader } from 'react-spinners';
 
 const Registration = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isLoading = useSelector(state => state.auth.isLoad);
+  console.log(isLoading);
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
@@ -85,12 +88,12 @@ const Registration = () => {
                 mt: 1, // margin top
               }}
             >
-              Registration
+              <PulseLoader loading={isLoading} color={'white'} size={20} />{' '}
+              Registration{' '}
+              <PulseLoader loading={isLoading} color={'white'} size={20} />
             </Button>
             <Typography
-              endDecorator={
-                <NavLink to="/login">Log in</NavLink>
-              }
+              endDecorator={<NavLink to="/login">Log in</NavLink>}
               fontSize="sm"
               sx={{ alignSelf: 'center' }}
             >

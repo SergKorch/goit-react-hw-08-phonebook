@@ -6,6 +6,7 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  isLoad: false,
 };
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -26,6 +27,7 @@ export const register = createAsyncThunk('auth/register', async credentials => {
     return data;
   } catch (error) {
     Notiflix.Notify.failure('Registration error');
+    initialState.isLoad = false;
   }
 });
 
@@ -70,10 +72,17 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
+    [register.pending](state, action) {
+      state.isLoad = true;
+    },
+    [register.rejected](state, action) {
+      state.isLoad = false;
+    },
     [register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.isLoad = false;
     },
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
